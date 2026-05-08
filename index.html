@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AxisGuide</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      color: #222;
+      background: #fafafa;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 22px 80px;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 0 28px;
+    }
+    h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 0 0 14px;
+      font-weight: 800;
+    }
+    .subtitle {
+      font-size: 21px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    .authors, .affiliations {
+      font-size: 16px;
+      color: #333;
+      margin: 8px 0;
+    }
+    .authors a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+    .venue {
+      margin-top: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #b45309;
+    }
+    .buttons {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .button.secondary {
+      background: #e5e7eb;
+      color: #111;
+    }
+    section {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-size: 28px;
+      margin: 0 0 16px;
+    }
+    h3 {
+      font-size: 20px;
+      margin-top: 24px;
+    }
+    .teaser {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+    }
+    .caption {
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .metric {
+      font-size: 30px;
+      font-weight: 800;
+      color: #c2410c;
+      margin-bottom: 4px;
+    }
+    video {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #111;
+    }
+    pre {
+      background: #111827;
+      color: #f9fafb;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    .footer {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-top: 36px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>AxisGuide</h1>
+      <div class="subtitle">Grounding Robot Action Coordinate System in RGB Observations for Robust Visuomotor Manipulation</div>
+
+      <div class="authors">
+        Jiyun Jang, Yujin Sung*, Woosung Joung*, Daewon Chae, Sangwon Lee, Sohwi Kim,<br />
+        Jinkyu Kim†, Jungbeom Lee†
+      </div>
+      <div class="affiliations">
+        Korea University · University of Michigan · KT Corporation · Kakao Mobility<br />
+        *Equal contribution · †Co-corresponding authors
+      </div>
+      <div class="venue">Robotics: Science and Systems (RSS) 2026</div>
+
+      <div class="buttons">
+        <a class="button" href="assets/paper.pdf">Paper</a>
+        <a class="button secondary" href="#video">Video</a>
+        <a class="button secondary" href="#bibtex">BibTeX</a>
+        <a class="button secondary" href="https://github.com/jiyunjang-24/axisguide">Code</a>
+      </div>
+    </header>
+
+    <section>
+      <img class="teaser" src="assets/teaser.png" alt="AxisGuide teaser figure" />
+      <div class="caption">
+        AxisGuide explicitly visualizes the robot base-frame action coordinate system in image space,
+        helping visuomotor policies generalize to unseen object locations.
+      </div>
+    </section>
+
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        Visuomotor manipulation policies trained via large-scale behavior cloning have achieved strong semantic scene understanding,
+        yet often fail to reliably execute correct low-level actions under distribution shifts. We argue that this gap arises from
+        insufficient action understanding: the inability to interpret the robot's base-frame action coordinate system in image space.
+      </p>
+      <p>
+        AxisGuide is a lightweight guidance method that renders the robot base-frame axes in each camera view and augments RGB
+        observations with cue channels that explicitly visualize the meaning of +x, +y, and +z motions. Across LIBERO simulation
+        and real-world experiments, AxisGuide improves task success and robustness under distribution shift.
+      </p>
+    </section>
+
+    <section>
+      <h2>Motivation</h2>
+      <p>
+        Current visuomotor policies often understand <b>what</b> to do, but struggle with <b>how</b> to execute the correct low-level action.
+        In robot manipulation, actions are usually defined in the robot base frame, while observations are RGB images. Without an
+        explicit visual reference, the policy must infer how base-frame motions such as +x, +y, and +z appear in the image.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Conventional Policy</h3>
+          <p>Learns image-to-action correspondences implicitly and can fail when the target object moves to unseen locations.</p>
+        </div>
+        <div class="card">
+          <h3>AxisGuide</h3>
+          <p>Provides explicit image-space cues for the robot action coordinate system, improving action grounding and generalization.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Method Overview</h2>
+      <img class="teaser" src="assets/method.png" alt="AxisGuide method overview" />
+      <p>
+        Given camera intrinsics, extrinsics, and the end-effector pose, AxisGuide projects unit robot base-frame translations onto
+        the image plane. The projected +x, +y, and +z directions are rendered as cue channels and concatenated with RGB observations.
+        This keeps the original RGB image intact while giving the policy a clean visual reference for action-coordinate semantics.
+      </p>
+    </section>
+
+    <section>
+      <h2>Key Results</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="metric">+13.33%p</div>
+          <b>LIBERO Novel Object Position</b>
+          <p>AxisGuide improves success from 52.38% to 65.71% in simulation.</p>
+        </div>
+        <div class="card">
+          <div class="metric">+19.88%p</div>
+          <b>Real-World Novel Object Position</b>
+          <p>AxisGuide improves success from 30.12% to 50.00% on the Pick Up (Pear) task.</p>
+        </div>
+        <div class="card">
+          <div class="metric">+5.41 ms</div>
+          <b>Low Runtime Overhead</b>
+          <p>AxisGuide adds only about 0.005 seconds of latency per inference on SmolVLA.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <h2>Qualitative Results</h2>
+      <div class="grid">
+        <div>
+          <video controls muted loop playsinline>
+            <source src="assets/simulation_result.mp4" type="video/mp4" />
+          </video>
+          <div class="caption">LIBERO simulation: reaching unseen object locations.</div>
+        </div>
+        <div>
+          <video controls muted loop playsinline>
+            <source src="assets/realworld_result.mp4" type="video/mp4" />
+          </video>
+          <div class="caption">Real-world manipulation with AxisGuide.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Comparison with Visual Cue Baselines</h2>
+      <p>
+        Existing visual cue methods provide spatial or temporal guidance, but they do not explicitly represent the robot action
+        coordinate system. AxisGuide directly shows where the x, y, and z action directions lie in the image, enabling the policy
+        to infer how to move toward a target under novel object positions.
+      </p>
+      <div class="grid">
+        <div class="card"><b>SmolVLA</b><br />52.38%</div>
+        <div class="card"><b>+ TraceVLA</b><br />51.90%</div>
+        <div class="card"><b>+ AimBot</b><br />52.38%</div>
+        <div class="card"><b>+ AxisGuide</b><br /><span class="metric">65.71%</span></div>
+      </div>
+    </section>
+
+    <section id="bibtex">
+      <h2>BibTeX</h2>
+      <pre>@inproceedings{jang2026axisguide,
+  title     = {AxisGuide: Grounding Robot Action Coordinate System in RGB Observations for Robust Visuomotor Manipulation},
+  author    = {Jang, Jiyun and Sung, Yujin and Joung, Woosung and Chae, Daewon and Lee, Sangwon and Kim, Sohwi and Kim, Jinkyu and Lee, Jungbeom},
+  booktitle = {Robotics: Science and Systems},
+  year      = {2026}
+}</pre>
+    </section>
+
+    <div class="footer">
+      © 2026 AxisGuide Authors
+    </div>
+  </div>
+</body>
+</html>
