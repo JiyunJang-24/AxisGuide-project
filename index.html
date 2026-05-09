@@ -83,8 +83,20 @@
       font-size: 20px;
       margin-top: 24px;
     }
-    .teaser {
+    .method {
       width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+    }
+    .teaser {
+      width: 50%;
+      max-width: 800px;
+      display: block;
+      margin: 0 auto;
       border-radius: 14px;
       border: 1px solid #e5e7eb;
       background: #f3f4f6;
@@ -152,7 +164,7 @@
       <div class="venue">Robotics: Science and Systems (RSS) 2026</div>
 
       <div class="buttons">
-        <a class="button" href="assets/paper.pdf">Paper</a>
+        <a class="button" href="assets/axisguide_rss_2026.pdf">Paper</a>
         <a class="button secondary" href="#video">Video</a>
         <a class="button secondary" href="#bibtex">BibTeX</a>
         <a class="button secondary" href="https://github.com/jiyunjang-24/axisguide">Code</a>
@@ -202,7 +214,7 @@
 
     <section>
       <h2>Method Overview</h2>
-      <img class="teaser" src="assets/method.png" alt="AxisGuide method overview" />
+      <img class="method" src="assets/main_method.png" alt="AxisGuide method overview" />
       <p>
         Given camera intrinsics, extrinsics, and the end-effector pose, AxisGuide projects unit robot base-frame translations onto
         the image plane. The projected +x, +y, and +z directions are rendered as cue channels and concatenated with RGB observations.
