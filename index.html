@@ -122,7 +122,7 @@
     .failure-video-grid video {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 0;
       border: 1px solid #222;
@@ -212,12 +212,6 @@
       border: 1px solid #e5e7eb;
       background: #111;
     }
-    .clip-label {
-      font-size: 12px;
-      color: #666;
-      text-align: center;
-      margin-top: 5px;
-    }
     .section-note {
       color: #444;
       margin: -4px 0 14px;
@@ -246,6 +240,31 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+    }
+    .plain-rollout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 18px;
+    }
+    .plain-rollout h4 {
+      font-size: 16px;
+      margin: 0 0 10px;
+    }
+    .result-figure {
+      width: 100%;
+      max-width: 820px;
+      display: block;
+      margin: 18px auto;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+    }
+    .suite-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
     }
     pre {
       background: #111827;
@@ -279,7 +298,9 @@
         grid-template-columns: 1fr;
       }
       .failure-layout,
-      .realworld-comparison {
+      .realworld-comparison,
+      .plain-rollout-grid,
+      .suite-grid {
         grid-template-columns: 1fr;
       }
       .teaser {
@@ -424,56 +445,48 @@
         Models trained with AxisGuide reliably reach object positions between training clusters, suggesting that
         explicit coordinate cues help the policy adjust end-effector motion under distribution shift.
       </p>
-      <div class="media-grid">
-        <div class="media-card">
+      <div class="plain-rollout-grid">
+        <div class="plain-rollout">
           <h4>Rollout 1</h4>
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours1.gif" alt="AxisGuide simulation rollout 1 front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours1-wrist.gif" alt="AxisGuide simulation rollout 1 wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
-        <div class="media-card">
+        <div class="plain-rollout">
           <h4>Rollout 2</h4>
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours2.gif" alt="AxisGuide simulation rollout 2 front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours2-wrist.gif" alt="AxisGuide simulation rollout 2 wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
-        <div class="media-card">
+        <div class="plain-rollout">
           <h4>Rollout 3</h4>
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours3.gif" alt="AxisGuide simulation rollout 3 front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours3-wrist.gif" alt="AxisGuide simulation rollout 3 wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
-        <div class="media-card">
+        <div class="plain-rollout">
           <h4>Rollout 4</h4>
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours4.gif" alt="AxisGuide simulation rollout 4 front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/newlocation-simulation/newlocation-simulation-ours4-wrist.gif" alt="AxisGuide simulation rollout 4 wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
@@ -493,25 +506,21 @@
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline1.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Baseline front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline1-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Baseline wrist view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline2.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Baseline front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline2-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Baseline wrist view</div>
             </div>
           </div>
         </div>
@@ -522,25 +531,21 @@
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours1.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">AxisGuide front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours1-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">AxisGuide wrist view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours2.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">AxisGuide front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours2-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">AxisGuide wrist view</div>
             </div>
           </div>
         </div>
@@ -559,13 +564,11 @@
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/close_pot_ours.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/close_pot_ours_wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
@@ -576,13 +579,11 @@
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/flip_pot_ours.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/flip_pot_ours_wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
@@ -593,34 +594,31 @@
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/pick_place_grape_ours.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/task-realworld/pick_place_grape_ours_wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
       </div>
 
-      <h3>LIBERO Simulation Task Rollouts</h3>
+      <h3>Single-Task Performance</h3>
       <p class="section-note">
-        In LIBERO simulation, AxisGuide is evaluated with Diffusion Policy and SmolVLA across spatial, object,
-        goal, and long-horizon tasks. The rollouts below show representative front and wrist views.
+        These single-task evaluations measure performance on individual manipulation tasks. Representative
+        rollouts are shown with front and wrist views.
       </p>
+      <img class="result-figure" src="assets/single-task.png" alt="Single-task performance results" />
       <div class="media-grid">
         <div class="media-card">
           <h4>Pick Bowl and Place on Plate</h4>
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/task-simulation/libero-pick&amp;place (bowl)-ours.gif" alt="LIBERO pick and place bowl front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/task-simulation/libero-pick&amp;place (bowl)-ours-wrist.gif" alt="LIBERO pick and place bowl wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
@@ -629,11 +627,9 @@
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/task-simulation/libero-put-both-ours.gif" alt="LIBERO put both objects in basket front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/task-simulation/libero-put-both-ours-wrist.gif" alt="LIBERO put both objects in basket wrist view" />
-              <div class="clip-label">Wrist view</div>
             </div>
           </div>
         </div>
@@ -642,63 +638,51 @@
           <div class="clip-pair">
             <div class="clip">
               <img src="assets/task-simulation/libero-stove (long)-ours.gif" alt="LIBERO stove long-horizon task front view" />
-              <div class="clip-label">Front view</div>
             </div>
             <div class="clip">
               <img src="assets/task-simulation/libero-stove (long)-ours-wrist.gif" alt="LIBERO stove long-horizon task wrist view" />
-              <div class="clip-label">Wrist view</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Multi-Task Suite Performance</h3>
+      <p class="section-note">
+        These evaluations measure success rate by task suite. Spatial and object rollouts are grouped by suite.
+      </p>
+      <img class="result-figure" src="assets/multi-task.png" alt="Multi-task suite performance results" />
+      <div class="suite-grid">
+        <div class="media-card">
+          <h4>LIBERO Spatial</h4>
+          <div class="four-clip-grid">
+            <div class="clip">
+              <img src="assets/task-simulation/libero-spatial-ours1.gif" alt="LIBERO spatial rollout front view" />
+            </div>
+            <div class="clip">
+              <img src="assets/task-simulation/libero-spatial-ours1-wrist.gif" alt="LIBERO spatial rollout wrist view" />
+            </div>
+            <div class="clip">
+              <img src="assets/task-simulation/libero-spatial-ours2.gif" alt="LIBERO spatial rollout front view" />
+            </div>
+            <div class="clip">
+              <img src="assets/task-simulation/libero-spatial-ours2-wrist.gif" alt="LIBERO spatial rollout wrist view" />
             </div>
           </div>
         </div>
         <div class="media-card">
-          <h4>LIBERO Spatial 1</h4>
-          <div class="clip-pair">
+          <h4>LIBERO Object</h4>
+          <div class="four-clip-grid">
             <div class="clip">
-              <img src="assets/task-simulation/libero-spatial-ours1.gif" alt="LIBERO spatial rollout 1 front view" />
-              <div class="clip-label">Front view</div>
+              <img src="assets/task-simulation/libero-object-ours1.gif" alt="LIBERO object rollout front view" />
             </div>
             <div class="clip">
-              <img src="assets/task-simulation/libero-spatial-ours1-wrist.gif" alt="LIBERO spatial rollout 1 wrist view" />
-              <div class="clip-label">Wrist view</div>
-            </div>
-          </div>
-        </div>
-        <div class="media-card">
-          <h4>LIBERO Spatial 2</h4>
-          <div class="clip-pair">
-            <div class="clip">
-              <img src="assets/task-simulation/libero-spatial-ours2.gif" alt="LIBERO spatial rollout 2 front view" />
-              <div class="clip-label">Front view</div>
+              <img src="assets/task-simulation/libero-object-ours1-wrist.gif" alt="LIBERO object rollout wrist view" />
             </div>
             <div class="clip">
-              <img src="assets/task-simulation/libero-spatial-ours2-wrist.gif" alt="LIBERO spatial rollout 2 wrist view" />
-              <div class="clip-label">Wrist view</div>
-            </div>
-          </div>
-        </div>
-        <div class="media-card">
-          <h4>LIBERO Object 1</h4>
-          <div class="clip-pair">
-            <div class="clip">
-              <img src="assets/task-simulation/libero-object-ours1.gif" alt="LIBERO object rollout 1 front view" />
-              <div class="clip-label">Front view</div>
+              <img src="assets/task-simulation/libero-object-ours2.gif" alt="LIBERO object rollout front view" />
             </div>
             <div class="clip">
-              <img src="assets/task-simulation/libero-object-ours1-wrist.gif" alt="LIBERO object rollout 1 wrist view" />
-              <div class="clip-label">Wrist view</div>
-            </div>
-          </div>
-        </div>
-        <div class="media-card">
-          <h4>LIBERO Object 2</h4>
-          <div class="clip-pair">
-            <div class="clip">
-              <img src="assets/task-simulation/libero-object-ours2.gif" alt="LIBERO object rollout 2 front view" />
-              <div class="clip-label">Front view</div>
-            </div>
-            <div class="clip">
-              <img src="assets/task-simulation/libero-object-ours2-wrist.gif" alt="LIBERO object rollout 2 wrist view" />
-              <div class="clip-label">Wrist view</div>
+              <img src="assets/task-simulation/libero-object-ours2-wrist.gif" alt="LIBERO object rollout wrist view" />
             </div>
           </div>
         </div>
