@@ -143,6 +143,21 @@
       border: 1px solid #222;
       background: #f3f4f6;
     }
+    .small-explanation {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 18px 0 0;
+    }
+    .problem-figure {
+      width: 100%;
+      max-width: 820px;
+      display: block;
+      margin: 18px auto 0;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -319,6 +334,24 @@
         </div>
         <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Novel object location generalization result" />
       </div>
+      <p class="small-explanation">
+        To generalize to unseen environments, a policy must ground the action coordinate system in RGB observations.
+        However, behavior cloning often reduces to memorizing image–action correspondences, resulting in poor generalization.
+        We demonstrate this by training a vision–language–action model on a pick-up task with randomized object placements
+        using wrist-mounted and front-facing cameras. Despite consistent object appearance, the model fails at unseen locations,
+        unable to adapt its end-effector motion to the shifted target.
+      </p>
+    </section>
+
+    <section>
+      <h2>Wy does this happed?</h2>
+      <p class="small-explanation">
+        Under the standard observation-to-action setting, it is inherently difficult for policies to learn a correspondence
+        between RGB observations and the action space. RGB images and robot states provide no explicit visual anchor for the
+        action coordinate system. The robot base is the only possible reference, but it offers limited semantic cues and is often
+        outside the camera’s field of view or partially occluded, making grounding the action coordinate system particularly challenging.
+      </p>
+      <img class="problem-figure" src="assets/problem.png" alt="Observation-to-action grounding problem" />
     </section>
 
     <section>
