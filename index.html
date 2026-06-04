@@ -364,13 +364,9 @@
       </div>
       <div class="small-explanation">
         <p>
-          To generalize to unseen environments, a policy must ground the action coordinate system in RGB observations.
-          However, behavior cloning often reduces to memorizing image–action correspondences, resulting in poor generalization.
-        </p>
-        <p>
-          We demonstrate this by training a vision–language–action model on a pick-up task with randomized object placements
-          using wrist-mounted and front-facing cameras. Despite consistent object appearance, the model fails at unseen locations,
-          unable to adapt its end-effector motion to the shifted target.
+          Generalization requires grounding the <b>robot action coordinate system</b> in RGB observations.
+          Yet behavior cloning can memorize image-action correspondences instead, leading to <b>poor generalization</b>
+          when the target moves to unseen locations.
         </p>
       </div>
     </section>
@@ -380,29 +376,11 @@
       <img class="problem-figure" src="assets/problem.png" alt="Observation-to-action grounding problem" />
       <div class="small-explanation">
         <p>
-          Under the standard observation-to-action setting, it is inherently difficult for policies to learn a correspondence
-          between RGB observations and the action space. RGB images and robot states provide no explicit visual anchor for the
-          action coordinate system.
-        </p>
-        <p>
-          The robot base is the only possible reference, but it offers limited semantic cues and is often outside the camera’s
-          field of view or partially occluded, making grounding the action coordinate system particularly challenging.
+          Standard RGB observations provide no explicit visual anchor for <b>+x, +y, and +z robot actions</b>.
+          The robot base is the only reference, but it is often visually ambiguous, occluded, or outside the camera view,
+          making action-coordinate grounding difficult.
         </p>
       </div>
-    </section>
-
-    <section>
-      <h2>Abstract</h2>
-      <p>
-        Visuomotor manipulation policies trained via large-scale behavior cloning have achieved strong semantic scene understanding,
-        yet often fail to reliably execute correct low-level actions under distribution shifts. We argue that this gap arises from
-        insufficient action understanding: the inability to interpret the robot's base-frame action coordinate system in image space.
-      </p>
-      <p>
-        AxisGuide is a lightweight guidance method that renders the robot base-frame axes in each camera view and augments RGB
-        observations with cue channels that explicitly visualize the meaning of +x, +y, and +z motions. Across LIBERO simulation
-        and real-world experiments, AxisGuide improves task success and robustness under distribution shift.
-      </p>
     </section>
 
     <section>
