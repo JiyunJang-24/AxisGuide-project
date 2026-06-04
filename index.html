@@ -596,8 +596,9 @@
 
       <h3>Single-Task Performance</h3>
       <p class="section-note">
-        These single-task evaluations measure performance on individual manipulation tasks. Representative
-        rollouts are shown with front and wrist views.
+        We evaluate AxisGuide in a <b>multi-view setting</b> with a fixed front camera and a wrist-mounted camera.
+        By providing an explicit axis reference in each view, AxisGuide helps the policy use the dynamically changing
+        <b>wrist view</b> more reliably on individual manipulation tasks.
       </p>
       <img class="result-figure" src="assets/single-task.png" alt="Single-task performance results" />
       <div class="media-grid">
@@ -638,7 +639,9 @@
 
       <h3>Multi-Task Suite Performance</h3>
       <p class="section-note">
-        These evaluations measure success rate by task suite. Spatial and object rollouts are grouped by suite.
+        As <b>task diversity</b> increases, a single language-conditioned policy must ground action coordinates across many
+        object configurations and instructions. AxisGuide preserves this coordinate grounding at the suite level, improving
+        robust instruction-conditioned execution in multi-view settings.
       </p>
       <img class="result-figure" src="assets/multi-task.png" alt="Multi-task suite performance results" />
       <div class="suite-grid">
