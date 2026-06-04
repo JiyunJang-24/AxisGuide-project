@@ -144,10 +144,17 @@
       background: #f3f4f6;
     }
     .small-explanation {
-      color: #555;
-      font-size: 14px;
-      line-height: 1.55;
-      margin: 18px 0 0;
+      color: #444;
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 18px auto 0;
+      max-width: 860px;
+    }
+    .small-explanation p {
+      margin: 0 0 10px;
+    }
+    .small-explanation p:last-child {
+      margin-bottom: 0;
     }
     .problem-figure {
       width: 100%;
@@ -355,24 +362,33 @@
         </div>
         <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Novel object location generalization result" />
       </div>
-      <p class="small-explanation">
-        To generalize to unseen environments, a policy must ground the action coordinate system in RGB observations.
-        However, behavior cloning often reduces to memorizing image–action correspondences, resulting in poor generalization.
-        We demonstrate this by training a vision–language–action model on a pick-up task with randomized object placements
-        using wrist-mounted and front-facing cameras. Despite consistent object appearance, the model fails at unseen locations,
-        unable to adapt its end-effector motion to the shifted target.
-      </p>
+      <div class="small-explanation">
+        <p>
+          To generalize to unseen environments, a policy must ground the action coordinate system in RGB observations.
+          However, behavior cloning often reduces to memorizing image–action correspondences, resulting in poor generalization.
+        </p>
+        <p>
+          We demonstrate this by training a vision–language–action model on a pick-up task with randomized object placements
+          using wrist-mounted and front-facing cameras. Despite consistent object appearance, the model fails at unseen locations,
+          unable to adapt its end-effector motion to the shifted target.
+        </p>
+      </div>
     </section>
 
     <section>
-      <h2>Wy does this happed?</h2>
-      <p class="small-explanation">
-        Under the standard observation-to-action setting, it is inherently difficult for policies to learn a correspondence
-        between RGB observations and the action space. RGB images and robot states provide no explicit visual anchor for the
-        action coordinate system. The robot base is the only possible reference, but it offers limited semantic cues and is often
-        outside the camera’s field of view or partially occluded, making grounding the action coordinate system particularly challenging.
-      </p>
+      <h2>Why does this happened?</h2>
       <img class="problem-figure" src="assets/problem.png" alt="Observation-to-action grounding problem" />
+      <div class="small-explanation">
+        <p>
+          Under the standard observation-to-action setting, it is inherently difficult for policies to learn a correspondence
+          between RGB observations and the action space. RGB images and robot states provide no explicit visual anchor for the
+          action coordinate system.
+        </p>
+        <p>
+          The robot base is the only possible reference, but it offers limited semantic cues and is often outside the camera’s
+          field of view or partially occluded, making grounding the action coordinate system particularly challenging.
+        </p>
+      </div>
     </section>
 
     <section>
