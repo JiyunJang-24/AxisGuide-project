@@ -107,6 +107,42 @@
       text-align: center;
       margin-top: 8px;
     }
+    .failure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 34px;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .failure-video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .failure-video-grid video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 0;
+      border: 1px solid #222;
+      background: #111;
+    }
+    .failure-caption {
+      color: #111;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .failure-result {
+      width: 100%;
+      display: block;
+      border: 1px solid #222;
+      background: #f3f4f6;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -177,6 +213,25 @@
       gap: 16px;
       margin-top: 16px;
     }
+    #video h3 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 34px 0 16px;
+    }
+    #video h3:first-child {
+      margin-top: 0;
+    }
+    .realworld-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .four-clip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
     pre {
       background: #111827;
       color: #f9fafb;
@@ -206,6 +261,10 @@
         font-size: 18px;
       }
       .clip-pair {
+        grid-template-columns: 1fr;
+      }
+      .failure-layout,
+      .realworld-comparison {
         grid-template-columns: 1fr;
       }
       .teaser {
@@ -239,10 +298,26 @@
     </header>
 
     <section>
-      <img class="teaser" src="assets/teaser.png" alt="AxisGuide teaser figure" />
-      <div class="caption">
-        AxisGuide explicitly visualizes the robot base-frame action coordinate system in image space,
-        helping visuomotor policies generalize to unseen object locations.
+      <h2>Do Visuomotor Manipulation Policies &quot;Understand&quot; Actions?</h2>
+      <div class="failure-layout">
+        <div>
+          <div class="failure-video-grid">
+            <video autoplay muted loop playsinline>
+              <source src="assets/newlocation-simulation/newlocation-simluation-baseline1.mp4" type="video/mp4" />
+            </video>
+            <video autoplay muted loop playsinline>
+              <source src="assets/newlocation-simulation/newlocation-simluation-baseline2.mp4" type="video/mp4" />
+            </video>
+            <video autoplay muted loop playsinline>
+              <source src="assets/newlocation-simulation/newlocation-simluation-baseline3.mp4" type="video/mp4" />
+            </video>
+            <video autoplay muted loop playsinline>
+              <source src="assets/newlocation-simulation/newlocation-simluation-baseline4.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="failure-caption">Poor generalization on new location</div>
+        </div>
+        <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Novel object location generalization result" />
       </div>
     </section>
 
@@ -311,13 +386,6 @@
     </section>
 
     <section id="video">
-      <h2>Supplementary Videos</h2>
-      <p>
-        The videos follow the supplementary presentation order: unseen-location generalization first,
-        then real-world manipulation tasks, and finally LIBERO simulation rollouts. Across these settings,
-        AxisGuide helps the policy ground base-frame action directions directly in RGB observations.
-      </p>
-
       <h3>Novel Object Locations in Simulation</h3>
       <p class="section-note">
         Models trained with AxisGuide reliably reach object positions between training clusters, suggesting that
@@ -384,72 +452,62 @@
         object locations. Wrist-view clips are shown alongside the front camera because multi-view control benefits
         from consistent action-coordinate cues across views.
       </p>
-      <div class="comparison-grid">
+      <div class="realworld-comparison">
         <div class="media-card">
-          <h4>Baseline 1</h4>
-          <div class="clip-pair">
+          <h4>Baseline</h4>
+          <div class="four-clip-grid">
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline1.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
+              <div class="clip-label">Baseline front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline1-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
+              <div class="clip-label">Baseline wrist view</div>
             </div>
-          </div>
-        </div>
-        <div class="media-card">
-          <h4>Baseline 2</h4>
-          <div class="clip-pair">
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline2.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
+              <div class="clip-label">Baseline front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-baseline2-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
+              <div class="clip-label">Baseline wrist view</div>
             </div>
           </div>
         </div>
         <div class="media-card">
-          <h4>AxisGuide 1</h4>
-          <div class="clip-pair">
+          <h4>AxisGuide</h4>
+          <div class="four-clip-grid">
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours1.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
+              <div class="clip-label">AxisGuide front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours1-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
+              <div class="clip-label">AxisGuide wrist view</div>
             </div>
-          </div>
-        </div>
-        <div class="media-card">
-          <h4>AxisGuide 2</h4>
-          <div class="clip-pair">
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours2.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Front view</div>
+              <div class="clip-label">AxisGuide front view</div>
             </div>
             <div class="clip">
               <video autoplay muted loop playsinline controls>
                 <source src="assets/newlocation-realworld/newlocation-realworld-ours2-wrist.mp4" type="video/mp4" />
               </video>
-              <div class="clip-label">Wrist view</div>
+              <div class="clip-label">AxisGuide wrist view</div>
             </div>
           </div>
         </div>
