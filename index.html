@@ -109,7 +109,7 @@
     }
     .failure-layout {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 34px;
       align-items: center;
       margin-top: 20px;
@@ -137,12 +137,45 @@
       margin-top: 8px;
       text-align: center;
     }
+    .failure-result-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: end;
+    }
+    .failure-result-card {
+      min-width: 0;
+      text-align: center;
+    }
+    .failure-result-label {
+      min-height: 29px;
+      margin-bottom: 8px;
+      color: #555;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .failure-result-card.ours {
+      box-sizing: border-box;
+      padding: 12px;
+      border-radius: 14px;
+      background: #fff7ed;
+      box-shadow: 0 10px 24px rgba(249, 115, 22, 0.16);
+    }
+    .failure-result-card.ours .failure-result-label {
+      color: #f59e0b;
+      font-size: 26px;
+    }
     .failure-result {
-      width: 80%;
+      width: 100%;
       display: block;
       margin: 0 auto;
-      border: 0;
+      border: 1px solid #d1d5db;
       background: #f3f4f6;
+    }
+    .failure-result-card.ours .failure-result {
+      border: 3px solid #f59e0b;
     }
     .small-explanation {
       color: #444;
@@ -288,6 +321,11 @@
       font-size: 14px;
       margin-top: 36px;
     }
+    @media (max-width: 760px) {
+      .failure-layout {
+        grid-template-columns: 1fr;
+      }
+    }
     @media (max-width: 560px) {
       .container {
         padding: 28px 14px 56px;
@@ -311,6 +349,9 @@
       .suite-grid {
         grid-template-columns: 1fr;
       }
+      .failure-result-comparison {
+        grid-template-columns: 1fr;
+      }
       .teaser {
         width: 100%;
       }
@@ -324,8 +365,12 @@
       <div class="subtitle">Grounding Robot Action Coordinate System in RGB Observations for Robust Visuomotor Manipulation</div>
 
       <div class="authors">
-        Jiyun Jang, Yujin Sung*, Woosung Joung*, Daewon Chae, Sangwon Lee, Sohwi Kim,<br />
-        Jinkyu Kim†, Jungbeom Lee†
+        <a href="https://jiyunjang-24.github.io/">Jiyun Jang</a>,
+        <a href="https://dinyudin203.github.io/">Yujin Sung</a>*,
+        <a href="https://mung3477-dev.vercel.app/">Woosung Joung</a>*,
+        <a href="https://daewon88.github.io/">Daewon Chae</a>, Sangwon Lee, Sohwi Kim,<br />
+        <a href="https://visionai.korea.ac.kr/">Jinkyu Kim</a>†,
+        <a href="https://visionai.korea.ac.kr/">Jungbeom Lee</a>†
       </div>
       <div class="affiliations">
         Korea University · University of Michigan · KT R&amp;D center · Kakao Mobility<br />
@@ -361,7 +406,16 @@
           </div>
           <div class="failure-caption">Poor generalization on new location</div>
         </div>
-        <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Novel object location generalization result" />
+        <div class="failure-result-comparison">
+          <div class="failure-result-card">
+            <div class="failure-result-label">Behavior Cloning</div>
+            <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Behavior cloning generalization result at novel object locations" />
+          </div>
+          <div class="failure-result-card ours">
+            <div class="failure-result-label">Ours</div>
+            <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result-ours.png" alt="AxisGuide generalization result at novel object locations" />
+          </div>
+        </div>
       </div>
       <div class="small-explanation">
         <p>
@@ -373,7 +427,7 @@
     </section>
 
     <section>
-      <h2>Why does this happened?</h2>
+      <h2>Why does this happen?</h2>
       <img class="problem-figure" src="assets/problem.png" alt="Observation-to-action grounding problem" />
       <div class="small-explanation">
         <p>
