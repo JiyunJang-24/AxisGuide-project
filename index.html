@@ -160,25 +160,33 @@
       line-height: 1.2;
     }
     .failure-result-card.ours {
-      box-sizing: border-box;
-      padding: 12px;
       border-radius: 14px;
-      background: #fff7ed;
-      box-shadow: 0 10px 24px rgba(249, 115, 22, 0.16);
     }
     .failure-result-card.ours .failure-result-label {
       color: #f59e0b;
       font-size: 26px;
     }
-    .failure-result {
+    .failure-result-viewport {
+      box-sizing: border-box;
       width: 100%;
-      display: block;
-      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
       border: 1px solid #d1d5db;
       background: #f3f4f6;
     }
-    .failure-result-card.ours .failure-result {
+    .failure-result {
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
+    }
+    .failure-result-card.ours .failure-result-viewport {
       border: 3px solid #f59e0b;
+      box-shadow: 0 10px 24px rgba(249, 115, 22, 0.16);
+    }
+    .failure-result-card.ours .failure-result {
+      transform: scale(1.12);
     }
     .small-explanation {
       color: #444;
@@ -412,12 +420,16 @@
         </div>
         <div class="failure-result-comparison">
           <div class="failure-result-card">
-            <div class="failure-result-label">Current visuomotor policies</div>
-            <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Current visuomotor policies generalization result at novel object locations" />
+            <div class="failure-result-label">Baseline</div>
+            <div class="failure-result-viewport">
+              <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result.png" alt="Current visuomotor policies generalization result at novel object locations" />
+            </div>
           </div>
           <div class="failure-result-card ours">
             <div class="failure-result-label">Ours</div>
-            <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result-ours.png" alt="AxisGuide generalization result at novel object locations" />
+            <div class="failure-result-viewport">
+              <img class="failure-result" src="assets/newlocation-simulation/newlocation-simulation-final-result-ours.png" alt="AxisGuide generalization result at novel object locations" />
+            </div>
           </div>
         </div>
       </div>
